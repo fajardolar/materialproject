@@ -1,0 +1,50 @@
+<table id="myTable" class="table table-striped"  data-toggle="table">
+    <thead>
+      <tr>
+        <th onclick="sortTable(0)">Item Description  </th>
+        <th onclick="sortTable(1)">Code</th>
+        <th onclick="">No of Items</th>
+        <th onclick="">Unit Measure</th>
+        <th onclick="">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+     
+     {{#materials}}
+      <tr>
+    
+        <td>{{material}}</td>
+        <td>{{material_id}}</td>
+        <td><input type="text" name="textbox1" id="textbox1" /></td>
+        <td><select class="form-control" name="usertype" id="usertype">
+            <option>unit</option>
+            <option>kilo</option>
+            <option>bag</option>
+             </select></td>
+        <td><a href="/employees"><i class="fa fa-trash-o "></i> delete</a></td>
+         
+      </tr>
+      {{/materials}} 
+      <!-- <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+      </tr> -->
+    </tbody>
+  </table>
+
+
+   <!-- <div>Chapter stuff:</div>
+    <ul>{{#Chapters}}
+        <ol>{{@index}} {{ChapterName}}
+        {{#movies}}
+            <li>Movie ID:{{movieIDnum}}</li>
+        {{/movies}}
+        </ol>
+        {{/Chapters}}
+    </ul> -->

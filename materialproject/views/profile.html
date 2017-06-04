@@ -1,0 +1,145 @@
+<div class="col-md-12">
+
+  <div class="new">
+      <p>Project Name</p> 
+  </div>
+  <div class="new">
+    <p>Requestor Name</p> 
+  </div>
+  <div class="new">
+    <p>Area Name</p> 
+  </div>
+  <div class="new">
+    <p>Date Due</p> 
+  </div>
+<!--  <div class="col-sm-6 col-md-4 col-md-offset-4"> -->
+<div class="all">
+ <div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Search')" id="defaultOpen">Search For A Material</button>
+  <button class="tablinks" onclick="openCity(event, 'Confirm')">Confirm</button>
+  <button class="tablinks" onclick="openCity(event, 'Print')">Print</button>
+</div>
+
+
+<!-- <div class="input-group add-on">
+      <input class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Type in a name" type="text">
+      <div class="input-group-btn">
+        <button class="btn btn-default" type="submit"><span class="caret"></span></button>
+      </div>
+</div>
+ -->
+<div id="Search" class="tabcontent">
+  <form method="post" action="profile">
+
+
+  <div class="row">
+     <div class="col-md-4 col-sm-4 col-lg-4">
+
+  <input autocomplete="off" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Type in a name">
+
+  <ul id="myUL">
+    <li><a href="#">Adhesive</a></li>
+    <li><a href="#">Board</a></li>
+    <li><a href="#">Hardware</a></li>
+    <li class="dropdown-submenu">
+              <a class="test" href="#">Electrical<span class="caret"></span></a>
+            
+              <ul id="myUL" class="dropdown-menu">
+              
+                 <li>
+                  <input id="item1" name="items" type="checkbox" value="Lamp, Halogen, Tungsten, 1000 watts">
+                <label id="item1" for="item1">Lamp, Halogen, Tungsten, 1000 watts</label> 
+                </li>
+                <li>
+                  <input id="item2" name="items" type="checkbox" value="Lamp, Mercury, Hallux Italy, Blended Light, 40watt">
+                  <label id="item2" for="item2">Lamp, Mercury, Hallux Italy, Blended Light, 40watt</label>
+                </li>
+                 <li>
+                  <input id="item3" name="items" type="checkbox" value="Lamp, Tungsten, Halogen, Kandolite, 1000watt">
+                  <label id="item3" for="item3">Lamp, Tungsten, Halogen, Kandolite, 1000watt</label>
+                </li>
+                 <li>
+                  <input id="item4" name="items" type="checkbox" value="Light Pendant, Philips">
+                  <label id="item4" for="item4">Light Pendant, Philips</label>
+                </li>
+                <li>
+                  <input id="item5" name="items" type="checkbox" value="IMC Pipe, 1/2">
+                  <label id="item5" for="item5">IMC Pipe, 1/2</label>
+                </li>
+                <li>
+                  <input id="item6" name="items" type="checkbox" value="Metallic Conduit, Flexible, 1/2">
+                  <label id="item6" for="item6">Metallic Conduit, Flexible, 1/2</label>
+                </li>
+                <li>
+                  <input id="item7" name="items" type="checkbox" value="Wire, THHN, Stranded, Philflex, 30mm2">
+                  <label id="item7" for="item7">Wire, THHN, Stranded, Philflex, 30mm2</label>
+                </li>
+                <li><input type="submit" name="submit" value="Add to SRS"> <input name="submit" type="reset"  value="Cancel"></li>
+             
+              </ul>
+                        </li>
+                <li><a href="#">Interior Fit</a></li>
+                <li><a href="#">Masonry</a></li>
+                <li><a href="#">Metal Frame</a></li>
+                <li><a href="#">Miscalleneous</a></li>
+                <li><a href="#">Newspapers</a></li>
+                <li><a href="#">Paints</a></li>
+                <li><a href="#">Plumbing</a></li>
+                <li><a href="#">Sealants</a></li>
+                <li><a href="#">Tools</a></li>
+            </ul>
+          </div>
+          </div>
+          </div>
+          <div id="Confirm" class="tabcontent">
+            <table id="myTable" class="table table-striped"  data-toggle="table">
+    <thead>
+      <tr>
+        <th onclick="sortTable(0)">Item Description  </th>
+        <th onclick="sortTable(1)">Code</th>
+        <th onclick="">No of Items</th>
+        <th onclick="">Unit Measure</th>
+        <th onclick="">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+     
+     {{#materials}}
+      <tr>
+    
+        <td>{{material}}</td>
+        <td>{{material_id}}</td>
+        <td><input type="text" name="textbox1" id="textbox1" /></td>
+        <td><select class="form-control" name="usertype" id="usertype">
+            <option>unit</option>
+            <option>kilo</option>
+            <option>bag</option>
+             </select></td>
+        <td><a href="/employees"><i class="fa fa-trash-o "></i> delete</a></td>
+         
+      </tr>
+      {{/materials}} 
+      <!-- <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+      </tr> -->
+    </tbody>
+  </table>
+   <center><button type="submit" class="btn btn-default btn-round-lg btn-lg"> Login </button></center>
+</div>
+
+          <div id="Print" class="tabcontent">
+            <h3>Tokyo</h3>
+            <p>Tokyo is the capital of Japan.</p>
+          </div>
+  </form>
+</div>
+<br>
+<br>
+</div>

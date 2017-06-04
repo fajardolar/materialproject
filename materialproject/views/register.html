@@ -1,0 +1,144 @@
+<!-- <h1> Register </h1> -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="account-wall">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                 <!-- <img class="profile-img img-responsive" src="/public/images/1492515328-12903.png" alt=""> -->
+                  </div>
+            </div>
+                <form class="login" method="post" action="register" autocomplete="off">
+                {{#register_form}}
+                    <div class="group">
+                    <input type="text" name={{value}}><span class="highlight"></span><span class="bar"></span>
+                    <label>{{name_label}}</label>
+                  </div>
+                {{/register_form}}
+                   
+                <div class="group1">
+                <div class="groupSelect">
+                <label for="usertype">User Type</label></div> 
+                    <select class="form-control" name="usertype" id="usertype">
+                    {{#user_type}}
+                      <option>{{usertype_name}}</option>
+                       {{/user_type}}
+                    </select> 
+                </div>
+               
+                  
+                  <center><button type="submit" class="btn btn-default btn-round-lg btn-lg"> Register </button></center>
+                 
+                </form>
+
+            </div>
+        </div>
+    </div>
+  
+
+
+<!-- <div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4"> -->
+        <!-- <h1 class="text-center login-title">Sign in to continue to Bootsnipp</h1> -->
+     <!--    <div class="account-wall">
+            <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                alt="">
+            <form class="form-signin" method="post" action="register"> -->
+            <!-- <p>{{errorMessage}}</p> -->
+     <!--        <label for="email">Email
+            <input name="email" type="text" class="form-control" placeholder="" required autofocus>  
+            </label>
+            <label for="password">Password
+            <input name="password" type="password" class="form-control" placeholder="" required>
+            </label>
+            <label for="usertype">User Type
+           <select class="form-control" name="usertype" id="usertype">
+            <option>SRS Coordinator</option>
+            <option>Purchasing</option>
+            <option>Operations Boss</option>
+             </select> -->
+            <!-- <input name="usertype" type="text" class="form-control" placeholder="" required autofocus>   -->
+         <!--    </label>
+           <button class="btn btn-lg btn-primary btn-block" type="submit">
+                Sign in</button>
+
+            </form>
+        </div>
+    </div>
+</div> -->
+
+
+<!-- <form method="post" action="register">
+  <p><input type="text"     name="email"    value="" placeholder="E-mail"></p>
+  <p><input type="password" name="password" value="" placeholder="Password"></p>
+  <p><input type="submit"   value="Register"></p> -->
+<!-- </form> -->
+
+
+<!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<div class="container-fluid">
+     <form method="post"  action="register" class="register-form"> 
+     
+      <div class="row">
+           <div class="col-md-4 col-sm-4 col-lg-4">
+              <label for="email">EMAIL</label>
+               <input name="email" class="form-control" type="email">             
+           </div>            
+      </div>
+      <div class="row">
+           <div class="col-md-4 col-sm-4 col-lg-4">
+              <label for="password">PASSWORD</label>
+               <input name="password" class="form-control" type="password">             
+           </div>            
+      </div>
+
+      <div class="row">
+          <div class="col-md-4 col-sm-4 col-lg-4">
+		      <label for="sel1">Select list (select one):</label>
+		       <select class="form-control" id="sel1">
+		        <option>SRS Coordinator</option>
+		        <option>Purchasing</option>
+		        <option>Operations Boss</option>
+		      </select>  
+		     </div>
+      </div>
+
+      <hr>
+      <div class="row">
+           <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6">
+           <button class="btn btn-default regbutton" value="Register">Register</button>
+           
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6">
+           <button class="btn btn-default logbutton">Sign up</button>           
+          </div>          
+      </div>    
+    </form>
+</div> -->
+
+
+
+<!-- <div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+        <div class="account-wall">
+            <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                alt="">
+            <form class="form-signup" method="post" action="register">
+				<input type="text"   class="form-control"  name="email"    value="" placeholder="E-mail" required autofocus>
+				<input type="password" class="form-control" name="password" value="" placeholder="Password" required>
+				
+			      <label class="radio-inline"><input type="radio" name="SRS Coordinator" value="">SRS Coordinator</label>
+			    
+			      <label class="radio-inline"><input type="radio" name="Purchasing" value="">Purchasing</label>
+			  
+			      <label class="radio-inline"><input type="radio" name="Operations Boss" value="">Operations Boss</label>
+			    
+				<p><input type="submit"   value="Register"></p>
+			</form>
+        </div>
+        <a href="register" class="text-center new-account">Create an account </a>
+    </div>
+</div> -->
+
+
+
