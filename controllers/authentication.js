@@ -1,8 +1,7 @@
 var Joi = require('joi');
 var User = require('../models/user');
-var Email, materials;
+var Email, materials, _firstName, _lastName, _projectName, _requestorName, _areaName;
 var Material = require('../models/material');
-var newArray = [];
 var srsList = [];
 /**
  * Responds to POST /login and logs the user in, well, soon.
@@ -35,8 +34,11 @@ exports.login = {
 
         request.cookieAuth.set(user);
 
-        console.log(request.payload.email);
+        console.log(user.firstname);
         Email = request.payload.email;
+        _firstame = user.firstname;
+        _lastName = user.lastname;
+
         return reply.redirect('/profile');
       }
 
@@ -173,10 +175,6 @@ exports.edit = {
     // }
 };
 
-var data = {materials :[
-        { "material_id":"13","material":"10000 watts"},{ "material_id":"131","material":"10000 watts"}
-    ]};
-
 // const objectSchema = Joi.object({
 //   items: Joi.string().min(1).required()
 // }).required();
@@ -287,6 +285,7 @@ exports.secret = {
                var json = {};
                json.materials = _material;
                json.user = {admin : true};
+               json.name = request.payload.email + " " + request.payload.lastname;
                console.log(json)  
              return reply.view('profile', json);
               }

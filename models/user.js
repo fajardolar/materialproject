@@ -14,6 +14,26 @@ var userSchema = new Mongoose.Schema({
     type: String,
     required: true
   },
+  firstname: {
+    type: String,
+    required: true
+  },
+  lastname: {
+    type: String,
+    required: true
+  },
+  projectname: {
+    type: String,
+    required: true
+  },
+  requestorname: {
+    type: String,
+    required: true
+  },
+  areaname: {
+    type: String,
+    required: true
+  },
 	creationDate: {
     type: Date,
     required: true,

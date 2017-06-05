@@ -1,6 +1,3 @@
-var Authentication = require('./authentication');
-var Material = require('../models/material');
-var User = require('../models/user');
 /**
  * Handles a call to / and shows some text with links to login and registration
  */
@@ -152,9 +149,12 @@ exports.secret = {
     //                 data: news
     //             });
 		 	//  }			
-		    
+		 
+		    var d = new Date();
+		    	console.log(d)
 
-		  return reply.view('profile',  { user: {  admin: true }});
+		  return reply.view('profile',  { name: request.auth.credentials.firstname + " " + request.auth.credentials.lastname, user: {  admin: true }, projects : {project_name : request.auth.credentials.projectname, requestor_name : request.auth.credentials.requestorname,
+		  								area_name : request.auth.credentials.areaname, date : d}});
 
 
 	

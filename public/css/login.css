@@ -68,13 +68,17 @@ form {
     margin-bottom: 20px; 
 }
 
-.group1 { 
-    position: relative; 
+.group2{
+ position: relative; 
+    margin-bottom: 20px; 
+    margin-top: 40px;
 }
 
-.groupSelect { 
-    margin-top: 20px; 
+.labelAdjust {
+  position: relative; 
+  bottom:35px;
 }
+
 
 input {
     font-size: 18px;
