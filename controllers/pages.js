@@ -71,7 +71,7 @@ exports.edit = {
 		}
 
 
-	return reply.view('edit', { user: {  admin: true }});
+	return reply.view('edit', { user: {  admin: true }, email : request.auth.credentials.email, password: request.auth.credentials.password});
 
 
 	}
@@ -150,11 +150,17 @@ exports.secret = {
     //             });
 		 	//  }			
 		 
-		    var d = new Date();
-		    	console.log(d)
+		    
+	    	var objDate = new Date(),
+		    locale = "en-us",
+		    month = objDate.toLocaleString(locale, { month: "long" });
+			day = objDate.getUTCDate();
+			year = objDate.getUTCFullYear();
+			var date = month + " " + day + ", " + year;
+			console.log(request.auth.credentials.usertype)
 
-		  return reply.view('profile',  { name: request.auth.credentials.firstname + " " + request.auth.credentials.lastname, user: {  admin: true }, projects : {project_name : request.auth.credentials.projectname, requestor_name : request.auth.credentials.requestorname,
-		  								area_name : request.auth.credentials.areaname, date : d}});
+		  return reply.view('profile',  { name: request.auth.credentials.firstname + " " + request.auth.credentials.lastname, usertype : request.auth.credentials.usertype, user: {  admin: true }, projects : {project_name : request.auth.credentials.projectname, requestor_name : request.auth.credentials.firstname + " " + request.auth.credentials.lastname,
+		  								area_name : request.auth.credentials.areaname, date : date}});
 
 
 	

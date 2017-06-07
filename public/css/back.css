@@ -209,10 +209,10 @@ table.tablesorter thead tr th:hover {
 
         cursor: default;
     }
-    .side-nav >li{
+   /* .side-nav >li{
 
         border-bottom:1px solid;
-    }
+    }*/
     /* Bootstrap Default Overrides - Customized Dropdowns for the Side Nav */
 
     .side-nav>li.dropdown>ul.dropdown-menu {
@@ -230,24 +230,39 @@ table.tablesorter thead tr th:hover {
     .side-nav>li.dropdown>ul.dropdown-menu>li>a {
         color: #000000;
         padding: 5px 5px 5px 25px;
-		white-space: normal!important;
+		    white-space: normal!important;
     }
 
-    li.dropdowns {
-       background-color: #4a4a4a;
+ 
+
+    .dropdowns {
+      background-color: rgba(255, 255, 255, 0.10);
+      border-left: 2px solid;
+      border-color: white;
+    }
+
+    li a p {
+      color: white;
+       font-size: 15px;
+    }
+
+    li a p {
+      margin: 0;
+     padding: 0;
     }
 
     .side-nav>li.dropdown>ul.dropdown-menu>li>a:hover,
     .side-nav>li.dropdown>ul.dropdown-menu>li>a.active,
     .side-nav>li.dropdown>ul.dropdown-menu>li>a:focus {
-        color: orange;
+        color: white;
         background-color: #000000;
-
     }
 
     .side-nav>li>a {
-        width: 230px;
+        width: 228px;
 	}
+
+
 	.side-nav>li>ul>li>a{border-top:1px dotted #ddd;}
 
     .navbar-inverse .navbar-nav>li>a:hover,
@@ -257,7 +272,6 @@ table.tablesorter thead tr th:hover {
     }
 
     .menu-active{
-
         background-color: #000000;
         color:orange !important;
     }
@@ -273,10 +287,10 @@ table.tablesorter thead tr th:hover {
         white-space: normal;
     }
     .navbar {
-         background-color: #fff;
-         -moz-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+       background-color: #fff;
+       -moz-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+      -webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
     }
     .navbar-right a.dropdown-toggle:hover,.navbar-right a.dropdown-toggle{
         padding:15px;
@@ -413,6 +427,8 @@ margin: 20px 0 15px;}
   margin-bottom: 12px;
 }
 
+
+
 #myUL {
   list-style-type: none;
   padding: 0;
@@ -445,8 +461,9 @@ margin: 20px 0 15px;}
 
 
 #myUL li input {
-     background-color: #f6f6f6;
-  display:inline-block;
+    background-color: #f6f6f6;
+    display:inline-block;
+
 }
 
 #myUL li label {

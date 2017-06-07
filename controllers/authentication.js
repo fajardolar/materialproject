@@ -36,7 +36,7 @@ exports.login = {
 
         console.log(user.firstname);
         Email = request.payload.email;
-        _firstame = user.firstname;
+        _firstName = user.firstname;
         _lastName = user.lastname;
 
         return reply.redirect('/profile');
@@ -281,11 +281,13 @@ exports.secret = {
                   obj.material_id = data[i].material_id;
                   _material.push(obj);
                 }
-
+//name: request.auth.credentials.firstname + " " + request.auth.credentials.lastname, usertype : request.auth.credentials.usertype, user: {  admin: true },
+// projects : {project_name : request.auth.credentials.projectname, requestor_name : request.auth.credentials.firstname + " " + request.auth.credentials.lastname,
+//      area_name : request.auth.credentials.areaname, date : date}
+    console.log(Email)
                var json = {};
                json.materials = _material;
                json.user = {admin : true};
-               json.name = request.payload.email + " " + request.payload.lastname;
                console.log(json)  
              return reply.view('profile', json);
               }
