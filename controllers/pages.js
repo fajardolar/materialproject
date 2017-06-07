@@ -17,6 +17,7 @@ exports.index = {
 	}
 };
 
+
 /**
  * Handles a call to /login and shows a login form
  */

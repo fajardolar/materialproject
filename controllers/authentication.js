@@ -3,6 +3,7 @@ var User = require('../models/user');
 var Email, materials, _firstName, _lastName, _projectName, _requestorName, _areaName;
 var Material = require('../models/material');
 var srsList = [];
+var Pages = require('./pages');
 /**
  * Responds to POST /login and logs the user in, well, soon.
  */
@@ -231,6 +232,10 @@ var materialID = [];
 
 
 exports.secret = {
+  auth: {
+    mode: 'try',
+    strategy: 'session'
+  },
   validate: {
     payload: {
       items: Joi.array().items(Joi.string()).min(1).unique().min(1),
@@ -281,11 +286,16 @@ exports.secret = {
                   obj.material_id = data[i].material_id;
                   _material.push(obj);
                 }
-//name: request.auth.credentials.firstname + " " + request.auth.credentials.lastname, usertype : request.auth.credentials.usertype, user: {  admin: true },
-// projects : {project_name : request.auth.credentials.projectname, requestor_name : request.auth.credentials.firstname + " " + request.auth.credentials.lastname,
-//      area_name : request.auth.credentials.areaname, date : date}
-    console.log(Email)
-               var json = {};
+                
+        console.log(request.auth.credentials.firstname)
+        var objDate = new Date(),
+        locale = "en-us",
+        month = objDate.toLocaleString(locale, { month: "long" });
+        day = objDate.getUTCDate();
+        year = objDate.getUTCFullYear();
+        var date = month + " " + day + ", " + year; 
+               var json = {name: request.auth.credentials.firstname + " " + request.auth.credentials.lastname, usertype : request.auth.credentials.usertype, user: {  admin: true }, projects : {project_name : request.auth.credentials.projectname, requestor_name : request.auth.credentials.firstname + " " + request.auth.credentials.lastname,
+                      area_name : request.auth.credentials.areaname, date : date}};
                json.materials = _material;
                json.user = {admin : true};
                console.log(json)  
