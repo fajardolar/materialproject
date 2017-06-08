@@ -110,13 +110,14 @@
     
         <td>{{material}}</td>
         <td>{{material_id}}</td>
-        <td><input type="text" name="textbox1" id="textbox1" /></td>
-        <td><select class="form-control" name="usertype" id="usertype">
+        <td><input type="text" /></td>
+        <td><select class="form-control">
             <option>unit</option>
             <option>kilo</option>
             <option>bag</option>
-             </select></td>
-        <td><a href="/employees"><i class="fa fa-trash-o "></i> delete</a></td>
+             </select>
+        </td>
+        <td><button type="submit" name="submit" value={{material_id}}><i class="fa fa-trash-o "></i> delete</button></td>
          
       </tr>
       {{/materials}} 

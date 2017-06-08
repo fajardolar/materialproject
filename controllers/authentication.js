@@ -228,7 +228,17 @@ var materialID = [];
 };
 
 
-
+/**
+* removeByIndex
+* @param {Array} array
+* @param {Number} index
+*/
+ removeByValue = (array, value) => {
+    return array.filter(function(elem, _index){
+        return value != elem ? true : false;
+    });
+};
+var l = [1,3,4,5,6,7];
 
 
 exports.secret = {
@@ -240,36 +250,40 @@ exports.secret = {
     payload: {
       items: Joi.array().items(Joi.string()).min(1).unique().min(1),
       itemname: Joi.string(), 
-      submit: Joi.string()
+      submit: Joi.string(),
+      material: Joi.string()
     }
   },
   handler: function (request, reply) {
-
+ 
     if(request.payload.submit == 'Add to SRS'){
       for(var i = 0; i < request.payload.items.length; i++){
         srsList.push(request.payload.items[i])
       }
-      console.log(srsList)
       // return reply.view('secrethideout', { user: {  admin: true }});
 
        // return console.log("Added")
-    }else{
-
-      for(var i = 0; i < request.payload.items.length; i++){
-        srsList.remove(request.payload.items[i])
-      }
-      console.log('You Canceled it')
-    //   return reply.redirect('/profile');
-    }
+    } 
 
     var materialID = [];
     for(let j=0; j < srsList.length; j++){
-      var obj = {}
+    var obj = {}
     obj.material = srsList[j];
     materialID.push(obj)
     }
 
-    console.log(materialID)  
+    // if(request.payload.submit == 'Delete'){
+
+
+               console.log(request.payload.material);
+
+      // for(var i = 0; i < request.payload.items.length; i++){
+      //   srsList.remove(request.payload.items[i])
+      // }
+       // console.log('Items' + request.payload.items)
+    //   return reply.redirect('/profile');
+    // }
+
 
     Material.find({"$or":materialID}, function (error, data) {
               if (error) {
@@ -287,14 +301,14 @@ exports.secret = {
                   _material.push(obj);
                 }
                 
-        console.log(request.auth.credentials.firstname)
         var objDate = new Date(),
         locale = "en-us",
         month = objDate.toLocaleString(locale, { month: "long" });
         day = objDate.getUTCDate();
         year = objDate.getUTCFullYear();
         var date = month + " " + day + ", " + year; 
-               var json = {name: request.auth.credentials.firstname + " " + request.auth.credentials.lastname, usertype : request.auth.credentials.usertype, user: {  admin: true }, projects : {project_name : request.auth.credentials.projectname, requestor_name : request.auth.credentials.firstname + " " + request.auth.credentials.lastname,
+               var json = {name: request.auth.credentials.firstname + " " + request.auth.credentials.lastname, usertype : request.auth.credentials.usertype, user: {  admin: true },
+                projects : {project_name : request.auth.credentials.projectname, requestor_name : request.auth.credentials.firstname + " " + request.auth.credentials.lastname,
                       area_name : request.auth.credentials.areaname, date : date}};
                json.materials = _material;
                json.user = {admin : true};
