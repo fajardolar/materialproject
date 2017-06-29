@@ -2,6 +2,7 @@ var Joi = require('joi');
 var User = require('../models/user');
 var Email, materials, _firstName, _lastName, _projectName, _requestorName, _areaName;
 var Material = require('../models/material');
+var ConfirmedMaterial = require('../models/confirmedMaterial');
 var srsList = [];
 var Pages = require('./pages');
 /**
@@ -52,7 +53,6 @@ exports.login = {
 
 // *
 //  * Responds to GET /logout and logs out the user
- 
 exports.logout = {
   auth: 'session',
   handler: function (request, reply) {
@@ -191,39 +191,36 @@ exports.confirm = {
   },
   handler: function (request, reply) {
 
-var materialID = [];
+  var materialID = [];
   for(let j=0; j < srsList.length; j++){
     var obj = {}
-  obj.material = srsList[j];
-  materialID.push(obj)
+    obj.material = srsList[j];
+    materialID.push(obj)
   }
 
-  console.log(materialID)  
-
   Material.find({"$or":materialID}, function (error, data) {
-            if (error) {
-                reply({
-                    statusCode: 503,
-                    message: 'Failed to get data',
-                    data: error
-                });
-            } else {
-              var _material = [];
-              for(let i=0; i<data.length; i++){
-                var obj = {};
-                obj.material = data[i].material;
-                obj.material_id = data[i].material_id;
-                _material.push(obj);
-              }
+        if (error) {
+            reply({
+                statusCode: 503,
+                message: 'Failed to get data',
+                data: error
+            });
+        } else {
+          var _material = [];
+          for(let i=0; i<data.length; i++){
+            var obj = {};
+            obj.material = data[i].material;
+            obj.material_id = data[i].material_id;
+            _material.push(obj);
+          }
 
-             var json = {};
-             json.materials = _material;
-             json.user = {admin : true};
-             console.log(json)  
-            return reply.view('confirm', json);
-
-            }
-        });
+         var json = {};
+         json.materials = _material;
+         json.user = {admin : true};
+         console.log(json)  
+        return reply.view('confirm', json);
+        }
+    });
   }
 };
 
@@ -251,71 +248,96 @@ exports.secret = {
       items: Joi.array().items(Joi.string()).min(1).unique().min(1),
       itemname: Joi.string(), 
       submit: Joi.string(),
-      material: Joi.string()
+      delete: Joi.string()
     }
   },
   handler: function (request, reply) {
  
     if(request.payload.submit == 'Add to SRS'){
-      for(var i = 0; i < request.payload.items.length; i++){
-        srsList.push(request.payload.items[i])
-      }
-      // return reply.view('secrethideout', { user: {  admin: true }});
+        for(var i = 0; i < request.payload.items.length; i++){
+          srsList.push(request.payload.items[i])
+        }
 
-       // return console.log("Added")
-    } 
-
-    var materialID = [];
-    for(let j=0; j < srsList.length; j++){
-    var obj = {}
-    obj.material = srsList[j];
-    materialID.push(obj)
-    }
-
-    // if(request.payload.submit == 'Delete'){
-
-
-               console.log(request.payload.material);
-
-      // for(var i = 0; i < request.payload.items.length; i++){
-      //   srsList.remove(request.payload.items[i])
-      // }
-       // console.log('Items' + request.payload.items)
-    //   return reply.redirect('/profile');
-    // }
-
-
-    Material.find({"$or":materialID}, function (error, data) {
-              if (error) {
-                  reply({
-                      statusCode: 503,
-                      message: 'Failed to get data',
-                      data: error
-                  });
-              } else {
-                var _material = [];
-                for(let i=0; i<data.length; i++){
-                  var obj = {};
-                  obj.material = data[i].material;
-                  obj.material_id = data[i].material_id;
-                  _material.push(obj);
+        var materialID = [];
+          for(let j=0; j < srsList.length; j++){
+            var obj = {}
+            obj.material = srsList[j];
+            materialID.push(obj)
+          }
+         Material.find({"$or":materialID}, function (error, data) {
+                if (error) {
+                    reply({
+                        statusCode: 503,
+                        message: 'Failed to get data',
+                        data: error
+                    });
+                } else {
+                   var _material = [];
+                  for(let i = 0; i < data.length; i++){
+                    var obj = {};
+                      obj.material = data[i].material;
+                      obj.material_id = data[i].material_id;
+                      _material.push(obj);
+                    var conObject = new ConfirmedMaterial(obj);
+                      conObject.save(function (error) {
+                          if (error) {
+                              reply({
+                                  statusCode: 503,
+                                  message: error
+                              });
+                          } 
+                      });
+                  }
+                  
+                  var objDate = new Date(),
+                  locale = "en-us",
+                  month = objDate.toLocaleString(locale, { month: "long" });
+                  day = objDate.getUTCDate();
+                  year = objDate.getUTCFullYear();
+                  var date = month + " " + day + ", " + year; 
+                  var json = {name: request.auth.credentials.firstname + " " + request.auth.credentials.lastname, usertype : request.auth.credentials.usertype, user: {  admin: true },
+                    projects : {project_name : request.auth.credentials.projectname, requestor_name : request.auth.credentials.firstname + " " + request.auth.credentials.lastname,
+                    area_name : request.auth.credentials.areaname, date : date}};
+                  
+                   ConfirmedMaterial.find({}, function (error, data) {
+                    if (error) {
+                      reply({
+                          statusCode: 503,
+                          message: 'Failed to get data',
+                          data: error
+                      });
+                    }
+                     console.log(data)
+                    // for(let i = 0; i < data.length; i++){
+                    //   var obj = {};
+                    //   obj.material = data[i].material;
+                    //   obj.material_id = data[i].material_id;
+                    //   _material.push(obj);
+                    // }
+                   });
+                   
+                   json.materials = _material;
+                   json.user = {admin : true};
+                   return reply.view('profile', json);
                 }
-                
-        var objDate = new Date(),
-        locale = "en-us",
-        month = objDate.toLocaleString(locale, { month: "long" });
-        day = objDate.getUTCDate();
-        year = objDate.getUTCFullYear();
-        var date = month + " " + day + ", " + year; 
-               var json = {name: request.auth.credentials.firstname + " " + request.auth.credentials.lastname, usertype : request.auth.credentials.usertype, user: {  admin: true },
-                projects : {project_name : request.auth.credentials.projectname, requestor_name : request.auth.credentials.firstname + " " + request.auth.credentials.lastname,
-                      area_name : request.auth.credentials.areaname, date : date}};
-               json.materials = _material;
-               json.user = {admin : true};
-               console.log(json)  
-             return reply.view('profile', json);
-              }
-          });
+      });
+      
+    } 
+    
+
+    // if(request.payload.delete != undefined){
+
+    //    console.log(request.payload.delete);
+    //    console.log(removeByValue(srsList, 'Lamp, Halogen, Tungsten, 1000 watts'))
+
+    //   // for(var i = 0; i < request.payload.items.length; i++){
+    //   //   srsList.remove(request.payload.items[i])
+    //   // }
+    //   // console.log('Items' + request.payload.items)
+    //   //   return reply.redirect('/profile');
+    //  }
+
+   
 
   
 

@@ -34,7 +34,6 @@ server.register([require('hapi-auth-cookie'), require('vision'), require('inert'
                 partialsPath: 'views/partials'
     });
 
-
     server.route({
         method : 'GET', 
         path : '/public/{path*}', 
